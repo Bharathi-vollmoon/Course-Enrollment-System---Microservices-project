@@ -23,8 +23,8 @@ public class UserService {
     private CourseClient courseClient;
 
     @CircuitBreaker(name = "courseService",fallbackMethod = "courseFallback")
-   // @Retry(name ="courseService")
-   // @RateLimiter(name = "courseService")
+    @Retry(name ="courseService")
+    @RateLimiter(name = "courseService")
     public CourseDTO getCourse(Integer courseId){
         System.out.println("calling course service");
         return courseClient.getCourseById(courseId).getBody();
